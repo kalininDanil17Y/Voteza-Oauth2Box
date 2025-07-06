@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <h2>Mock OAuth2 Playground</h2>
+  <form method="POST" action="/authorize">
+    <input type="hidden" name="client_id" value="{{CLIENT_ID}}"/>
+    <input type="hidden" name="redirect_uri" value="{{REDIRECT_URI}}"/>
+    <input type="hidden" name="state" value="{{STATE}}"/>
+    <label>Email: <input name="email" placeholder="user@example.com" required/></label><br/>
+    <label>User ID (optional): <input name="id" placeholder="uuid"/></label><br/>
+    <button type="submit">Authorize</button>
+  </form>
+  <h3>Quick users</h3>
+  <ul>
+    {{USER_LIST}}
+  </ul>
+</body>
+</html>
