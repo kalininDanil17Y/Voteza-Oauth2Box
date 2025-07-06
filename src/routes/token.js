@@ -10,12 +10,12 @@ module.exports = (codes) => {
     router.post('/', (req, res) => {
         const { grant_type } = req.body;
         if (grant_type === 'authorization_code') {
-            const { code, client_id, client_secret, redirect_uri } = req.body;
+            const { code, client_id, client_secret } = req.body;
             const data = codes.get(code);
             if (!data) return res.status(400).json({ error: 'invalid_grant' });
             if (STRICT_CLIENTS) {
                 const client = findClient(client_id);
-                if (!client || client.secret !== client_secret || client.redirect_uri !== redirect_uri || data.client_id !== client_id) {
+                if (!client || client.secret !== client_secret || data.client_id !== client_id) {
                     return res.status(400).json({ error: 'invalid_client' });
                 }
             }
