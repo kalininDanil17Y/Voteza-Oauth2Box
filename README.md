@@ -3,7 +3,8 @@
 **OAuthBox** — это лёгкий, настраиваемый mock OAuth2/OpenID провайдер для разработки и тестирования.  
 Он эмулирует поведение настоящей OAuth2-системы, позволяя легко тестировать клиентские приложения **без настоящих авторизаций**.
 
-![OAuthBox Logo](./logo-generated.png)
+![OAuthBox Logo](./assets/favicon-96x96.png)
+![Screenshot](./assets/voteza-oauth.png)
 
 ---
 
