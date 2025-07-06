@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <title>Voteza Oauth2Box – Authorization</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/static/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: "hsl(222.2 84% 4.9%)",
+            foreground: "hsl(210 40% 98%)",
+            card: "hsl(222.2 84% 4.9%)",
+            "card-foreground": "hsl(210 40% 98%)",
+            primary: "hsl(217 91% 60%)",
+            "primary-foreground": "hsl(0 0% 100%)",
+            secondary: "hsl(217.2 32.6% 17.5%)",
+            "secondary-foreground": "hsl(210 40% 98%)",
+            muted: "hsl(217.2 32.6% 17.5%)",
+            "muted-foreground": "hsl(215 20.2% 65.1%)",
+            border: "hsl(217.2 32.6% 17.5%)",
+            input: "hsl(217.2 32.6% 17.5%)",
+            ring: "hsl(217 91% 60%)",
+          },
+          borderRadius: {
+            lg: "0.75rem",
+            md: "calc(0.75rem - 2px)",
+            sm: "calc(0.75rem - 4px)",
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      background-color: hsl(222.2 84% 4.9%);
+      color: hsl(210 40% 98%);
+    }
+
+    .gradient-bg {
+      background: linear-gradient(
+              135deg,
+              hsl(222.2 84% 4.9%) 0%,
+              hsl(217 32% 8%) 50%,
+              hsl(217 20% 6%) 100%
+      );
+    }
+
+    .floating-shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.6;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    .floating-shape:nth-child(1) {
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(
+              45deg,
+              rgba(59, 130, 246, 0.3),
+              rgba(139, 92, 246, 0.3)
+      );
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .floating-shape:nth-child(2) {
+      width: 200px;
+      height: 200px;
+      background: linear-gradient(
+              45deg,
+              rgba(139, 92, 246, 0.2),
+              rgba(59, 130, 246, 0.2)
+      );
+      top: 60%;
+      right: 10%;
+      animation-delay: -10s;
+    }
+
+    .floating-shape:nth-child(3) {
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(
+              45deg,
+              rgba(59, 130, 246, 0.25),
+              rgba(16, 185, 129, 0.25)
+      );
+      bottom: 20%;
+      left: 30%;
+      animation-delay: -5s;
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0px) translateX(0px) rotate(0deg);
+      }
+      25% {
+        transform: translateY(-20px) translateX(10px) rotate(90deg);
+      }
+      50% {
+        transform: translateY(0px) translateX(20px) rotate(180deg);
+      }
+      75% {
+        transform: translateY(20px) translateX(-10px) rotate(270deg);
+      }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen gradient-bg relative overflow-hidden">
+<!-- Floating background shapes -->
+<div class="floating-shape"></div>
+<div class="floating-shape"></div>
+<div class="floating-shape"></div>
+
+<div
+        class="min-h-screen flex items-center justify-center px-4 relative z-10"
+>
+  <div
+          class="w-full max-w-md rounded-xl shadow-xl p-8 space-y-6 backdrop-blur-sm border border-border/20"
+          style="background-color: hsl(222.2 84% 4.9% / 0.9)"
+  >
+    <!-- Header -->
+    <div class="text-center space-y-2">
+      <h1 class="text-3xl font-bold text-primary">
+        <img src="/static/favicon.svg" class="w-12 h-12 inline-block mr-2" /> Voteza
+      </h1>
+
+      <h2 class="text-lg font-semibold text-muted-foreground">Oauth2Box</h2>
+      <div class="w-16 h-1 bg-primary rounded-full mx-auto"></div>
+    </div>
+
+    <!-- Authorization Form -->
+    <form method="POST" action="/authorize" class="space-y-4">
+      <input type="hidden" name="client_id" value="{{CLIENT_ID}}" />
+      <input type="hidden" name="redirect_uri" value="{{REDIRECT_URI}}" />
+      <input type="hidden" name="state" value="{{STATE}}" />
+
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-foreground"
+        >Email</label
+        >
+        <input
+                name="email"
+                type="email"
+                required
+                placeholder="user@example.com"
+                class="w-full px-3 py-3 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-200"
+                style="
+                background-color: hsl(217.2 32.6% 17.5%);
+                color: hsl(210 40% 98%);
+              "
+        />
+      </div>
+
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-foreground"
+        >User ID (optional)</label
+        >
+        <input
+                name="id"
+                placeholder="uuid"
+                class="w-full px-3 py-3 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-200"
+                style="
+                background-color: hsl(217.2 32.6% 17.5%);
+                color: hsl(210 40% 98%);
+              "
+        />
+      </div>
+
+      <button
+              type="submit"
+              class="w-full py-3 px-4 rounded-lg text-primary-foreground font-semibold transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background"
+              style="background-color: hsl(217 91% 60%)"
+              onmouseover="this.style.backgroundColor='hsl(217 91% 55%)'"
+              onmouseout="this.style.backgroundColor='hsl(217 91% 60%)'"
+      >
+        Authorize
+      </button>
+    </form>
+
+    <!-- Quick Users Section -->
+    <div class="pt-4 border-t border-border">
+      <h3 class="text-sm font-semibold mb-3 text-foreground">
+        Quick users
+      </h3>
+      <div class="space-y-2">{{USER_LIST}}</div>
+    </div>
+
+
+    <!-- GitHub Link -->
+    <div class="pt-6 text-center text-sm text-muted-foreground">
+      <a href="https://github.com/kalininDanil17Y/Voteza-Oauth2Box" target="_blank" rel="noopener" class="hover:underline hover:text-primary transition">
+        🛠 View on GitHub
+      </a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

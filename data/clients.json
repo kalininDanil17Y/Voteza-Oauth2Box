@@ -1,0 +1,7 @@
+[
+  {
+    "id": "demo-app",
+    "secret": "demo-secret",
+    "redirect_uri": "http://localhost:3000/callback"
+  }
+]
