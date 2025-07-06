@@ -25,3 +25,21 @@ git clone https://github.com/yourname/oauthbox.git
 cd oauthbox
 cp .env.example .env
 docker compose up -d
+```
+
+### Строгая проверка клиентов
+
+При установке `STRICT_CLIENTS=true` в `.env` сервер будет проверять `client_id`, `client_secret` и `redirect_uri`.
+Разрешённые клиенты перечислены в файле `data/clients.json`:
+
+```json
+[
+  {
+    "id": "demo-app",
+    "secret": "demo-secret",
+    "redirect_uri": "http://localhost:3000/callback"
+  }
+]
+```
+
+Если `STRICT_CLIENTS=false`, сервер принимает любые значения.
