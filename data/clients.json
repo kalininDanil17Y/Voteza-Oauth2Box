@@ -1,7 +1,7 @@
 [
   {
-    "id": "demo-app",
-    "secret": "demo-secret",
-    "redirect_uri": "http://localhost:3000/callback"
+    "id": "86861309e7d622e1bf36d97d63d87d2d",
+    "secret": "3311f8178b7deaa795288d2231014931",
+    "redirect_uri": "http://localhost:5173/oauth2/callback"
   }
 ]
