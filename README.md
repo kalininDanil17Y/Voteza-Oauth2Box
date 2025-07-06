@@ -21,7 +21,7 @@
 ## 🧭 Быстрый старт
 
 ```bash
-git clone https://github.com/yourname/oauthbox.git
+git clone https://github.com/kalininDanil17Y/Voteza-Oauth2Box.git
 cd oauthbox
 cp .env.example .env
 docker compose up -d
