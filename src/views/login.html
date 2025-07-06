@@ -1,18 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
-<body>
-  <h2>Mock OAuth2 Playground</h2>
-  <form method="POST" action="/authorize">
-    <input type="hidden" name="client_id" value="{{CLIENT_ID}}"/>
-    <input type="hidden" name="redirect_uri" value="{{REDIRECT_URI}}"/>
-    <input type="hidden" name="state" value="{{STATE}}"/>
-    <label>Email: <input name="email" placeholder="user@example.com" required/></label><br/>
-    <label>User ID (optional): <input name="id" placeholder="uuid"/></label><br/>
-    <button type="submit">Authorize</button>
+<html lang="en" class="bg-gray-900 text-white">
+<head>
+  <meta charset="UTF-8" />
+  <title>OAuthBox – Authorization</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center px-4">
+<div class="w-full max-w-md bg-gray-800 rounded-xl shadow-lg p-6 space-y-6">
+  <h2 class="text-2xl font-bold text-center">🔐 OAuthBox</h2>
+
+  <form method="POST" action="/authorize" class="space-y-4">
+    <input type="hidden" name="client_id" value="{{CLIENT_ID}}" />
+    <input type="hidden" name="redirect_uri" value="{{REDIRECT_URI}}" />
+    <input type="hidden" name="state" value="{{STATE}}" />
+
+    <div>
+      <label class="block text-sm font-medium mb-1">Email</label>
+      <input name="email" type="email" required placeholder="user@example.com"
+             class="w-full px-3 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium mb-1">User ID (optional)</label>
+      <input name="id" placeholder="uuid"
+             class="w-full px-3 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <button type="submit"
+            class="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 rounded text-white font-semibold transition">
+      Authorize
+    </button>
   </form>
-  <h3>Quick users</h3>
-  <ul>
-    {{USER_LIST}}
-  </ul>
+
+  <div>
+    <h3 class="text-sm font-semibold mb-2">Quick users</h3>
+    <ul class="space-y-2">
+      {{USER_LIST}}
+    </ul>
+  </div>
+</div>
 </body>
 </html>
